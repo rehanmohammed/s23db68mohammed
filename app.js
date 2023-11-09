@@ -57,7 +57,7 @@ app.use(function(err, req, res, next) {
 // We can seed the collection if needed onserver start
 async function recreateDB(){
 // Delete everything
-//await Sports.deleteMany();
+await Sports.deleteMany();
 
 let instance1 = new
 Sports({SportsCar:"Ferari", Sportsperson:'Salman',
