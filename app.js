@@ -4,11 +4,20 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+require('dotenv').config();
+const connectionString =
+process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString);
+var Sports = require("./models/SportsSchema");
+
 var indexRouter = require('./routes/index');
 var SportsRouter = require('./routes/Sports');
 var usersRouter = require('./routes/users');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
+var resourceRouter = require('./routes/resource');
+
 
 var app = express();
 
@@ -27,6 +36,7 @@ app.use('/users', usersRouter);
 app.use('/Sports', SportsRouter);
 app.use('/board', boardRouter);
 app.use('/choose', chooseRouter);
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,5 +53,40 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// We can seed the collection if needed onserver start
+async function recreateDB(){
+// Delete everything
+//await Sports.deleteMany();
+
+let instance1 = new
+Sports({SportsCar:"Ferari", Sportsperson:'Salman',
+sportsbike:'Fazer'});
+instance1.save().then(doc=>{
+console.log("First object saved")}
+).catch(err=>{
+console.error(err)
+});
+
+let instance2 = new
+Sports({SportsCar:"BMW", Sportsperson:'Sharuk',
+sportsbike:'Bullet'});
+instance2.save().then(doc=>{
+console.log("Second object saved")}
+).catch(err=>{
+console.error(err)
+});
+
+let instance3 = new
+Sports({SportsCar:"Audi", Sportsperson:'Amir',
+sportsbike:'Thuderstrome'});
+instance3.save().then(doc=>{
+console.log("Third object saved")}
+).catch(err=>{
+console.error(err)
+});
+}
+let reseed = true;
+if (reseed) {recreateDB();}
 
 module.exports = app;
