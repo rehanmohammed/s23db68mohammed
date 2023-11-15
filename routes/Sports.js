@@ -5,5 +5,4 @@ var router = express.Router();
 router.get('/', function(req, res, next) { 
   res.render('Sports', { title: 'Search results Sports' });
 });
-
 module.exports = router;

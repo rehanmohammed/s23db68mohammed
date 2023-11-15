@@ -1,0 +1,25 @@
+extends layout
+ 
+block content
+  h1= title
+  - let Sportsid = toShow._id
+  - let SportsCar = toShow.SportsCar
+  - let Sportsperson = toShow.Sportsperson
+  - let sportsbike = toShow.sportsbike
+ 
+  div
+    div.row
+      div(class='costumeAttr mr-3') Sports ID is:
+      div #{Sportsid}
+ 
+    div.row
+      div(class='costumeAttr mr-3') Sports Car is:
+      div #{SportsCar}
+ 
+    div.row
+      div(class='costumeAttr mr-3') Sport sperson is:
+      div #{Sportsperson}
+ 
+    div.row
+      div(class='costumeAttr mr-3') sports bike is:
+      div #{sportsbike}

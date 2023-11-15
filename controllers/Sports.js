@@ -44,13 +44,24 @@ exports.Sports_create_post = async function(req, res) {
 };
 
 // Handle Sports delete form on DELETE.
-exports.Sports_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: Sports delete DELETE ' + req.params.id);
-};
+//exports.Sports_delete = function(req, res) {
+//res.send('NOT IMPLEMENTED: Sports delete DELETE ' + req.params.id);
+//};
+
+// Handle Costume delete on DELETE.
+exports.Sports_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await Sports.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
 // Handle Sports update form on PUT.
-exports.Sports_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: Sports update PUT' + req.params.id);
-};
+
 
 // VIEWS
 // Handle a show all view
@@ -72,10 +83,9 @@ exports.Sports_view_all_Page = async function(req, res) {
      try {
      let toUpdate = await Sports.findById( req.params.id)
      // Do updates of properties
-     if(req.body.Sports_type)
-     toUpdate.Sports_type = req.body.Sports_type;
-     if(req.body.cost) toUpdate.cost = req.body.cost;
-     if(req.body.size) toUpdate.size = req.body.size;
+     if(req.body.SportsCar) toUpdate.SportsCar = req.body.SportsCar;
+     if(req.body.Sportsperson) toUpdate.Sportsperson = req.body.Sportsperson;
+     if(req.body.sportsbike) toUpdate.sportsbike = req.body.sportsbike;
      let result = await toUpdate.save();
      console.log("Sucess " + result)
      res.send(result)
@@ -84,4 +94,5 @@ exports.Sports_view_all_Page = async function(req, res) {
      res.send(`{"error": ${err}: Update for id ${req.params.id}
     failed`);
      }
+
     };
