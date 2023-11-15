@@ -7,6 +7,12 @@ router.get('/', function(req, res, next) {
 });
 module.exports = router;
 
-    /* GET detail costume page */
+    /* GET detail Sports page */
     const Sports_controlers= require('../controllers/Sports1');
     router.get('/detail', Sports_controlers.Sports_view_one_Page);
+
+    /* GET create Sports page */
+router.get('/create', Sports_controlers.Sports_create_Page);
+
+/* GET create update page */
+router.get('/update', Sports_controlers.Sports_update_Page);
