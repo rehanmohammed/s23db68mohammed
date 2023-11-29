@@ -16,3 +16,7 @@ router.get('/create', Sports_controlers.Sports_create_Page);
 
 /* GET create update page */
 router.get('/update', Sports_controlers.Sports_update_Page);
+router.get('/update', secured,Sports_controlers.costume_update_Page);
+
+/* GET delete Sports page */
+router.get('/delete', Sports_controlers.Sports_delete_Page);

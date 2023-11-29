@@ -3,15 +3,12 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  p I am Rahan Moahmmed. i am an senor software developer.
-  button(type="button", class="btn btn-primary",onclick="goFaster()") pressme 
-  div#faster Increase the speed 
-  a(href="/Sports") Search Results of Sports
-  script.
-    let mph = 20;
-    let change = 1;
-    function goFaster() {
-      mph += change;
-      change += 1;
-      document.getElementById('faster').textContent = `MPH ${mph} with change ${change}`; 
-    }
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/Sports") Take me to Sports
+    br
+    a(href="/logout") Logout

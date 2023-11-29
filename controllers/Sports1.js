@@ -41,3 +41,17 @@ exports.Sports_update_Page = async function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
 };
+
+// Handle a delete one view with id from query
+exports.Sports_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await Sports.findById(req.query.id)
+    res.render('Sportsdelete', { title: 'Sports Delete', toShow:
+    result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };

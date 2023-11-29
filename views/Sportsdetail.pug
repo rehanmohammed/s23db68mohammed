@@ -1,25 +1,29 @@
 extends layout
- 
+
 block content
   h1= title
-  - let Sportsid = toShow._id
-  - let SportsCar = toShow.SportsCar
-  - let Sportsperson = toShow.Sportsperson
-  - let sportsbike = toShow.sportsbike
- 
-  div
-    div.row
-      div(class='costumeAttr mr-3') Sports ID is:
-      div #{Sportsid}
- 
-    div.row
-      div(class='costumeAttr mr-3') Sports Car is:
-      div #{SportsCar}
- 
-    div.row
-      div(class='costumeAttr mr-3') Sport sperson is:
-      div #{Sportsperson}
- 
-    div.row
-      div(class='costumeAttr mr-3') sports bike is:
-      div #{sportsbike}
+
+  if (toShow == null)
+    h2 No instance to details
+  else
+    - let Sportsid = toShow._id
+    - let SportsCar = toShow.SportsCar
+    - let Sportsperson = toShow.Sportsperson
+    - let sportsbike = toShow.sportsbike
+
+    div
+      div.row(style='background-color: #f2f2f2; border: 12px solid #99aabb; padding: 11px;')
+        div(class='costumeAttr mr-3') Sports ID is:
+          div #{Sportsid}
+
+        div.row
+          div(class='costumeAttr mr-3') Sports Car is:
+            div #{SportsCar}
+
+        div.row
+          div(class='costumeAttr mr-3') Sport sperson is:
+            div #{Sportsperson}
+
+        div.row
+          div(class='costumeAttr mr-3') sports bike is:
+            div #{sportsbike}

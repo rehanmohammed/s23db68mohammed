@@ -1,18 +1,23 @@
 extends layout
- 
+
 block content
   h1= title
- 
- 
+
   - let results = [{"SportsCar": 'Ferari',"Sportsperson": 'Salman',"sportsbike": 'Fazer'},{"SportsCar": 'BMW',"Sportsperson": 'Sharuk',"sportsbike": 'Bullet'},{"SportsCar": 'Audi',"Sportsperson": 'Amir',"sportsbike": 'Thuderstrome'}]
- 
+
   div(class="container-fluid")
     div(class="row")
       each r, index in results
-        div(class="col-sm-2" onclick=`buy(${index})`) #{r.SportsCar}, #{r.Sportsperson}, #{r.sportsbike}
- 
-  script.
-    function buy(m)
-    {
-    alert(`your grade is ${m+1}`)
+        div(class="col-sm-2", onclick=`buy(${index})`) #{r.SportsCar}, #{r.Sportsperson}, #{r.sportsbike}
+        - let destination = `/Sports1/update?id=${r._id}` 
+        div(class="col-sm-2", onclick=`buy(${r})`) #{r.SportsCar}, #{r.Sportsperson}, #{r.sportsbike} 
+        button.btn(class="btn-primary ml-1", onclick=`dispatch('${destination}')`) Update
+  script.   
+    function buy(a) {
+      alert(`Your Sports item is ${results[a].SportsCar}`); // Fix the alert message
     }
+
+    function dispatch(path) {
+      window.location.href = path;
+    }
+
