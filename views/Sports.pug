@@ -3,21 +3,26 @@ extends layout
 block content
   h1= title
 
-  - let results = [{"SportsCar": 'Ferari',"Sportsperson": 'Salman',"sportsbike": 'Fazer'},{"SportsCar": 'BMW',"Sportsperson": 'Sharuk',"sportsbike": 'Bullet'},{"SportsCar": 'Audi',"Sportsperson": 'Amir',"sportsbike": 'Thuderstrome'}]
-
+  - let results = [{"SportsCar": 'Ferari', "Sportsperson": 'Amir', "sportsbike": 'Fazer'},{"SportsCar": 'BMW', "Sportsperson": 'Amir', "sportsbike": 'Bullet'},{"SportsCar": 'Audi', "Sportsperson": 'Salman', "sportsbike": 'Thuderstrome'}]
+  - let destination = `/Sports1/create`
+  button.btn(class="btn-primary ml-1", onclick=`dispatch("${destination}")`) Create New Sports Item
   div(class="container-fluid")
     div(class="row")
       each r, index in results
+        -let destination1 = `/Sports1/update?id=${r._id}`
+        -let destination2 = `/Sports1/Detail?id=${r._id}`
+        -let destination3 = `/Sports1/Delete?id=${r._id}`
         div(class="col-sm-2", onclick=`buy(${index})`) #{r.SportsCar}, #{r.Sportsperson}, #{r.sportsbike}
-        - let destination = `/Sports1/update?id=${r._id}` 
         div(class="col-sm-2", onclick=`buy(${r})`) #{r.SportsCar}, #{r.Sportsperson}, #{r.sportsbike} 
-        button.btn(class="btn-primary ml-1", onclick=`dispatch('${destination}')`) Update
-  script.   
+        button.btn(class="btn-primary ml-1", onclick=`dispatch('${destination1}')`) Update
+        button.btn(class="btn-primary ml-1", onclick=`dispatch('${destination2}')`) Detail
+        button.btn(class="btn-primary ml-1", onclick=`dispatch('${destination3}')`) Delete
+
+  script.
     function buy(a) {
-      alert(`Your Sports item is ${results[a].SportsCar}`); // Fix the alert message
+      alert(`Your Sports item is ${results[a].SportsCar}`);
     }
 
     function dispatch(path) {
       window.location.href = path;
     }
-
